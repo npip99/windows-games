@@ -8,6 +8,8 @@ fi
 
 if [[ -z "$1" || -z "$2" ]]; then
   echo "Usage: ./download.sh GAME_DIR_NAME DOWNLOAD_LINK"
+  exit 1
+fi
 
 cd "$HOME/windows_games/setups"
 if [[ -d "$1" || -f "$1" ]]; then

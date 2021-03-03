@@ -1,5 +1,11 @@
 #!/bin/bash
 set -e
 
-cd "$1"
-tar -czvf "../$1.tar.gz" .
+if [[ -z "$1" ]]; then
+  echo "Usage: ./save.sh GAME_DIR_NAME"
+  exit 1
+fi
+
+cd "~/windows_games/setups/$1"
+mkdir -p "~/windows_games/saved_setups"
+tar -czvf "~/windows_games/saved_setups/$1.tar.gz" .
