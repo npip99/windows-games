@@ -32,4 +32,13 @@ If you want to clean the unneeded install directory, run
 
 # Creating your own game.tar.gz
 
-In `~/windows_games/setups/YOUR_GAME`, put all your desired installation files in it, and put a `./setup.sh` for the sequence of commands needed to install the game. That script will have the `$WINEPREFIX` variable, which can be used to copy local files from the installation directory, to the wine directory. Additionally, you must add a `./start.sh` that runs the program itself. You can then serve it from whatever file distribution method you desire. Other users may then use `./download.sh` to download it. NOTE: Do ensure that you follow all trademark and copyright laws for whatever files you choose to distribute. I obviously hold no responsibility for what you choose to distribute on the internet, or what you choose to download.
+In `~/windows_games/setups/YOUR_GAME`, you must do the following:
+- Add all of your desired installation files in the folder, however you desire
+- Add a `./setup.sh` for the sequence of commands needed to install the game
+- Add a`./start.sh` script that runs the program itself.
+
+The `setup.sh` script will have the `$WINEPREFIX` variable passed into it, which can be used to copy local files from the installation directory, to the wine directory. The current working directory of `setup.sh`, will be the installation directory with all local files available.
+
+The `./start.sh` script will be have the current working directory of the `$WINEPREFIX` directory itself (And will still have that environment variable passed into it).
+
+In order to save your custom setup into a tar.gz, run `./save.sh YOUR_GAME`, and your tar.gz can then be found in `~/windows_games/saved_setups`. You can then serve that tar.gz from whatever file distribution method you desire. Other users may then use `./download.sh` to download it. NOTE: Do ensure that you follow all trademark and copyright laws for whatever files you choose to distribute. I obviously hold no responsibility for what you choose to distribute on the internet, or what you choose to download from the internet.
