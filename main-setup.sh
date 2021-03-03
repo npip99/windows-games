@@ -68,6 +68,7 @@ systemctl --user restart pulseaudio.service
 setfacl -m u:WindowsGamesUser:rw- /tmp/shared-pulse-socket
 
 # Here we create the games directory
+mkdir -p "$ROOT"
 mkdir "$GAMES_DIR"
 mkdir "$ROOT/setups"
 # Have $WINDOWS_GAMES_USERNAME own the games folder

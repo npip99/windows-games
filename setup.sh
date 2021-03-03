@@ -5,7 +5,7 @@ export GAME_DIR_NAME="$1"
 export GAME_NAME="${2:-$1}"
 export SHOULD_SILENCE="y"
 if [[ -z "$GAME_DIR_NAME" ]]; then
-  echo "\"$GAME_DIR_NAME\" is not a valid game directory"
+  echo "Usage: ./setup.sh GAME_DIR_NAME [GAME_READABLE_NAME]"
   exit 1
 fi
 
@@ -39,7 +39,7 @@ fi
 # Add "1>&3 2>&4" to any installation commands that should potentially be silenced
 
 # Check for setup directory
-cd ../setups
+cd "$HOME/windows_games/setups"
 if [[ ! -d "./$GAME_DIR_NAME" ]]; then
   echo "Could not find directory ./$GAME_DIR_NAME"
   exit 1
