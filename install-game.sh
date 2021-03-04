@@ -5,7 +5,7 @@ export GAME_DIR_NAME="$1"
 export GAME_NAME="${2:-$1}"
 export SHOULD_SILENCE="y"
 if [[ -z "$GAME_DIR_NAME" ]]; then
-  echo "Usage: ./setup.sh GAME_DIR_NAME [GAME_READABLE_NAME]"
+  echo "Usage: ./install-game.sh GAME_DIR_NAME [GAME_READABLE_NAME]"
   exit 1
 fi
 
@@ -90,7 +90,7 @@ EOF
 as-windows-games-user wineboot --init 1>&3 2>&4
 
 cd "$GAME_DIR/installer"
-as-windows-games-user ./setup.sh
+as-windows-games-user ./install.sh
 
 # Remove installer symlink
 as-windows-games-user rm "$GAME_DIR/installer"

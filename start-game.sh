@@ -4,7 +4,7 @@
 export GAME_DIR_NAME="$1"
 export GAME_NAME="${2:-$1}"
 if [[ -z "$GAME_DIR_NAME" ]]; then
-  echo "Usage: ./start.sh GAME_DIR_NAME [GAME_READABLE_NAME]"
+  echo "Usage: ./start-game.sh GAME_DIR_NAME [GAME_READABLE_NAME]"
   exit 1
 fi
 

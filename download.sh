@@ -1,13 +1,13 @@
 #!/bin/bash
 set -e
 
-if [[ ! -d "$HOME/windows_games/setups" ]]; then
-  echo "Could not find directory $HOME/windows_games/setups. Please run ./main-setup.sh first"
+if [[ -z "$1" || -z "$2" ]]; then
+  echo "Usage: ./download.sh GAME_DIR_NAME DOWNLOAD_LINK"
   exit 1
 fi
 
-if [[ -z "$1" || -z "$2" ]]; then
-  echo "Usage: ./download.sh GAME_DIR_NAME DOWNLOAD_LINK"
+if [[ ! -d "$HOME/windows_games/setups" ]]; then
+  echo "Could not find directory $HOME/windows_games/setups. Please run ./main-setup.sh first"
   exit 1
 fi
 

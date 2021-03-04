@@ -11,33 +11,55 @@ git clone https://github.com/npip99/windows-games.git ~/windows_games/scripts
 
 # Usage
 
+## Initial setup
+
+Before doing anything else, install WindowsGames by running
+
+```
+./main-setup.sh
+```
+
+To uninstall, run
+
+```
+./main-remove.sh
+```
+
+## Installing and running a game
+
 To install a game, do the following:
 
 ```
 ./download.sh GAME_NAME GAME_TARGZ_URL
-./setup.sh GAME_NAME
+./install-game.sh GAME_NAME
 ```
 
 To start the game,
 
 ```
-./start.sh GAME_NAME
+./start-game.sh GAME_NAME
 ```
 
 If you want to clean the unneeded install directory, run
 
 ```
-./clean.sh GAME_NAME
+./remove-installer.sh GAME_NAME
+```
+
+To uninstall the game, run
+
+```
+./uninstall-game.sh GAME_NAME
 ```
 
 # Creating your own game.tar.gz
 
 In `~/windows_games/setups/YOUR_GAME`, you must do the following:
 - Add all of your desired installation files in the folder, however you desire
-- Add a `./setup.sh` for the sequence of commands needed to install the game
+- Add a `./install.sh` for the sequence of commands needed to install the game
 - Add a`./start.sh` script that runs the program itself.
 
-The `setup.sh` script will have the `$WINEPREFIX` variable passed into it, which can be used to copy local files from the installation directory, to the wine directory. The current working directory of `setup.sh`, will be the installation directory with all local files available.
+The `install.sh` script will have the `$WINEPREFIX` variable passed into it, which can be used to copy local files from the installation directory, to the wine directory. The current working directory of `install.sh`, will be the installation directory with all local files available.
 
 The `./start.sh` script will be have the current working directory of the `$WINEPREFIX` directory itself (And will still have that environment variable passed into it).
 

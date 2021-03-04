@@ -2,7 +2,7 @@
 set -e
 
 if [[ -z "$1" ]]; then
-  echo "Usage: ./save.sh GAME_DIR_NAME"
+  echo "Usage: ./save-setup.sh GAME_DIR_NAME"
   exit 1
 fi
 
