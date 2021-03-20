@@ -18,7 +18,7 @@ sudo echo "Sudo received!"
 echo "Warning: This will delete ALL data across ALL games. Are you sure? (y/n)"
 read -rp "" input
 if [[ ! "$input" =~ ^[yY](es)?$ ]]; then
-  exit 0
+  exit 1
 fi
 
 # Done first since the ~/games file signifies to ./main-setup.sh that WindowsGames is not installed

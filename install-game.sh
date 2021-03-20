@@ -12,12 +12,12 @@ fi
 # Error handling
 set -e
 export DELETE_IF_BAD=""
-export KILL_WINESERVER_IF_BAD=""
+export KILL_WINESERVER_ON_FAIL=""
 err_report() {
   echo "Error ($1)"
   echo "Failed to install $GAME_NAME"
   # Wineserver tries to access GAME_DIR for a while, so kill it before rm'ing GAME_DIR
-  if [[ -n "$KILL_WINESERVER_IF_BAD" ]]; then
+  if [[ -n "$KILL_WINESERVER_ON_FAIL" ]]; then
     as-windows-games-user wineserver -k
   fi
   if [[ -n "$DELETE_IF_BAD" ]]; then
@@ -80,24 +80,25 @@ as-windows-games-user ln -s "../../setups/$GAME_DIR_NAME" "$GAME_DIR/installer"
 # Initialize wine
 export WINEPREFIX="$GAME_DIR/wine"
 export WINEARCH="win32"
-export WINEDLLOVERRIDES="mscoree,mshtml,winemenubuilder.exe=" # Silence mono/gecko popups
-KILL_WINESERVER_IF_BAD="y"
 as-windows-games-user mkdir -p "$HOME/.config/pulse"
 as-windows-games-user tee "$HOME/.config/pulse/client.conf" >/dev/null <<EOF
 autospawn = no
 default-server = unix:/tmp/shared-pulse-socket
 EOF
-as-windows-games-user wineboot --init 1>&3 2>&4
 
+KILL_WINESERVER_ON_FAIL="y"
 cd "$GAME_DIR/installer"
 as-windows-games-user ./install.sh
 
 # Remove installer symlink
+cd "$GAME_DIR"
 as-windows-games-user rm "$GAME_DIR/installer"
 
-# But keep start.sh
-as-windows-games-user cp "../../setups/$GAME_DIR_NAME/start.sh" "$GAME_DIR/start.sh"
+# But copy all script files
+as-windows-games-user cp "../../setups/$GAME_DIR_NAME/"*.sh "$GAME_DIR"
+# (But don't copy install.sh)
+as-windows-games-user rm "$GAME_DIR/install.sh"
 
 echo "Install Complete!"
-echo "Simply run ./start.sh $GAME_DIR_NAME to start $GAME_NAME, enjoy!"
+echo "Simply run ./start-game.sh $GAME_DIR_NAME to start $GAME_NAME, enjoy!"
 
