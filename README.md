@@ -3,7 +3,7 @@
 This repository may be cloned anywhere, but if you want to keep things all in one place, I recommend the following:
 
 ```
-mkdir -p ~/windows_games/scripts
+mkdir -p ~/windows_games
 git clone https://github.com/npip99/windows-games.git ~/windows_games/scripts
 # Or,
 # git clone git@github.com:npip99/windows-games.git ~/windows_games/scripts
